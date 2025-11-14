@@ -1,3 +1,6 @@
+<script setup lang="ts">
+  import Bills from './Bills.vue';
+</script>
 <template>
-  <div class="text-red-500">hello world</div>
+  <Bills></Bills>
 </template>

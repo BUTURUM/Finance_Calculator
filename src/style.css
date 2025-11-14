@@ -1,2 +1,27 @@
 @import "tailwindcss";
 
+@font-face{
+  font-family: 'DM Sans';
+  src: url('./assets/DMSans.ttf') format('truetype');
+}
+
+@theme{
+  --color-surface: #F7E9DC;
+  --color-primary: #EB765D;
+  --color-on-primary: #FFFFFF;
+  --color-on-primary-low: #FCD4CC;
+
+  --color-primary-box: #F9B6A8;
+  --color-on-primary-box: #EB765D;
+
+  --color-secondary: #FFFCF7;
+  --color-secondary-box: #E4E1DD;
+  --color-on-secondary: #382314;
+  --color-on-secondary-low: #93867B;
+
+  --color-outline: #ABA299;
+}
+
+body{
+  @apply bg-surface font-[DM_Sans] p-3
+}
