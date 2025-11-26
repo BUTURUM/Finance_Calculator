@@ -1,0 +1,39 @@
+<template>
+  <div
+    @click="use"
+    class="rounded-sm bg-secondary-box p-1.5 inline-block"
+    :class="[date ? 'text-on-secondary' : 'text-on-secondary-low']"
+    v-bind="$attrs"
+  >
+    {{ display }}
+  </div>
+  <input class="hidden" @change="update" type="date" ref="input">
+</template>
+<script setup>
+  import { DateTime } from 'luxon';
+  import { computed, markRaw, onMounted, useTemplateRef } from 'vue';
+
+  defineOptions({ inheritAttrs: false });
+
+  const input = useTemplateRef('input');
+  const date = defineModel();
+  const display = computed(() => {
+    if(date.value){
+      return date.value.toFormat('dd.LL.yyyy')
+    } else{
+      return 'dd.mm.yyyy'
+    }
+  });
+
+  function update(event){
+    date.value = markRaw(DateTime.fromJSDate(event.target.valueAsDate));
+  }
+
+  function use(){
+    input.value.showPicker();
+  }
+
+  onMounted(() => {
+    input.value.valueAsDate = new Date();
+  });
+</script>

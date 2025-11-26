@@ -22,7 +22,7 @@
           </td>
           <td>{{ bill.title }}</td>
           <td class="text-center">{{ bill.amount.toFixed(2) }}</td>
-          <td class="text-center">{{ bill.due }}</td>
+          <td class="text-center">{{ bill.due.toFormat('dd.LL.yyyy') }}</td>
         </tr>
       </tbody>
     </table>

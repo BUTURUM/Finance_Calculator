@@ -16,6 +16,7 @@
     "vite-svg-loader": "^5.1.0"
   },
   "dependencies": {
+    "luxon": "^3.7.2",
     "tailwindcss": "^4.1.17",
     "vue": "^3.5.24"
   }

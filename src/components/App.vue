@@ -1,5 +1,5 @@
 <script setup>
-  import { reactive, ref } from 'vue';
+  import { markRaw, reactive, ref } from 'vue';
   
   import Bills from './Bills.vue';
   import Blob from './Blob.vue';
@@ -9,7 +9,7 @@
   const bills = reactive([]);
 
   function newBill(bill){
-    bills.push({ ...bill, due: "15.11.2025", payed: false});
+    bills.push({ ...bill, payed: false});
   }
 </script>
 <template>
