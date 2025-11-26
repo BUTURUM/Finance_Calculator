@@ -25,3 +25,7 @@
 body{
   @apply bg-surface font-[DM_Sans] p-3
 }
+
+.box{
+  @apply bg-secondary rounded-sm p-2.5
+}

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-secondary rounded-sm p-2.5">
+  <div class="box">
     <table class="w-full border-separate border-spacing-2.5">
       <colgroup>
         <col />
