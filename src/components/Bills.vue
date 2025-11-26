@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <table class="w-full border-separate border-spacing-2.5">
+    <table v-if="bills.length" class="w-full border-separate border-spacing-2.5">
       <colgroup>
         <col />
         <col width="50%"/>
@@ -26,42 +26,13 @@
         </tr>
       </tbody>
     </table>
+    <div v-else class="flex justify-center items-center h-24">
+      <div class="text-on-secondary-low">You have no bills to pay</div>
+    </div>
   </div>
 </template>
 <script setup>
-  import { reactive } from 'vue';
   import Checkbox from './Checkbox.vue';
 
-  const bills = reactive([
-    {
-      title: "Electricity",
-      amount: 92.50,
-      due: "15.11.2025",
-      payed: false
-    },
-    {
-      title: "Water",
-      amount: 45.20,
-      due: "20.11.2025",
-      payed: false
-    },
-    {
-      title: "Internet",
-      amount: 59.99,
-      due: "01.12.2025",
-      payed: false
-    },
-    {
-      title: "Rent",
-      amount: 1200,
-      due: "05.12.2025",
-      payed: false
-    },
-    {
-      title: "Phone",
-      amount: 38.75,
-      due: "10.12.2025",
-      payed: false
-    }
-  ])
+  const { bills } = defineProps(['bills']);
 </script>
