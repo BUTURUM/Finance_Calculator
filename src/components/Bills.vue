@@ -32,7 +32,7 @@
   </div>
 </template>
 <script setup>
-  import Checkbox from './Checkbox.vue';
+  import Checkbox from '../utils/Checkbox.vue';
 
   const { bills } = defineProps(['bills']);
 </script>

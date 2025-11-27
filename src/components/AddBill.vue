@@ -27,8 +27,8 @@
 </template>
 <script setup>
   import { reactive, toRaw, watch } from 'vue';
-  import Model from './Model.vue';
-import DateInput from './DateInput.vue';
+  import Model from '../utils/Model.vue';
+  import DateInput from '../utils/DateInput.vue';
 
   const open = defineModel();
   const emit = defineEmits(['new-bill']);
