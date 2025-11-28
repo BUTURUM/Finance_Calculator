@@ -7,7 +7,7 @@
   >
     {{ display }}
   </div>
-  <input class="hidden" @change="update" type="date" ref="input">
+  <input class="hidden" v-model="internal" @change="update" type="date" ref="input">
 </template>
 <script setup>
   import { DateTime } from 'luxon';
@@ -16,14 +16,23 @@
   defineOptions({ inheritAttrs: false });
 
   const input = useTemplateRef('input');
-  const date = defineModel();
-  const display = computed(() => {
-    if(date.value){
-      return date.value.toFormat('dd.LL.yyyy')
-    } else{
-      return 'dd.mm.yyyy'
+  const date = defineModel({ required: true });
+
+  const { future } = defineProps({
+    future: {
+      type: Boolean, default: false
     }
-  });
+  })
+
+  const internal = computed({
+    get(){
+      return date.value.toISODate();
+    },
+    set(value){
+      date.value = DateTime.fromISO(value);
+    }
+  })
+  const display = computed(() => date.value.toFormat('dd.LL.yyyy'));
 
   function update(event){
     date.value = markRaw(DateTime.fromJSDate(event.target.valueAsDate));
@@ -34,9 +43,6 @@
   }
 
   onMounted(() => {
-    const today = DateTime.now().toFormat('yyyy-LL-dd');
-
-    input.value.min = today;
-    input.value.value = today;
-  });
+    if(future) input.value.min = DateTime.now().toISODate();
+  })
 </script>

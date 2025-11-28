@@ -16,7 +16,7 @@
       />
       <div class="flex gap-2 items-center">
         <div class="text-low">to be paid by:</div>
-        <DateInput class="on-secondary flex-auto" v-model="data.due"/>
+        <DateInput class="on-secondary flex-auto" v-model="data.due" future/>
       </div>
       <div class="flex">
         <button @click="close" type="button" class="passive-btn flex-auto">close</button>
@@ -26,16 +26,19 @@
   </Model>
 </template>
 <script setup>
-  import { reactive, toRaw, watch } from 'vue';
+  import { markRaw, reactive, readonly, toRaw, watch } from 'vue';
+  import { DateTime } from 'luxon';
+
   import Model from '../utils/Model.vue';
   import DateInput from '../utils/DateInput.vue';
 
   const open = defineModel();
   const emit = defineEmits(['new-bill']);
 
-  const data = reactive({
-    title: undefined, amount: undefined, due: undefined
+  const original = Object.freeze({
+    title: undefined, amount: undefined, due: markRaw(DateTime.now())
   });
+  const data = reactive(Object.assign({}, original));
 
   function close(){
     open.value = false;
@@ -50,10 +53,6 @@
   }
 
   watch(open, (value) => {
-    if(value) return;
-
-    for(let key in data){
-      data[key] = undefined;
-    }
+    if(!value) Object.assign(data, original);
   });
 </script>
