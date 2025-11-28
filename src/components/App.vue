@@ -7,15 +7,21 @@
   import Summary from './Summary.vue';
 
   const open = ref(false);
-  const bills = reactive([]);
+  const bills = reactive({
+    list: [], increment: 0
+  });
 
   function newBill(bill){
-    bills.push({ ...bill, payed: false});
+    bills.list.push({ ...bill, id: bills.increment++, payed: false});
+  }
+  function deleteBill(targetId){
+    bills.list = bills.list.filter(({id}) => id != targetId);
   }
 </script>
 <template>
-  <Summary :bills="bills"/>
-  <Bills :bills="bills"/>
-  <Blob @click="open = true"/>
+  <Summary :bills="bills.list"/>
+  <Bills :bills="bills.list" @delete-bill="deleteBill"/>
   <AddBill v-model="open" @new-bill="newBill"/>
+
+  <Blob @click="open = true"/>
 </template>
