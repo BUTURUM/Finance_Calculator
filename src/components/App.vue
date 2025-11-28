@@ -1,5 +1,5 @@
 <script setup>
-  import { markRaw, reactive, ref } from 'vue';
+  import { reactive, ref } from 'vue';
   
   import Bills from './Bills.vue';
   import Blob from './Blob.vue';
