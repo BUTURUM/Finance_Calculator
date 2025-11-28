@@ -4,6 +4,7 @@
   import Bills from './Bills.vue';
   import Blob from './Blob.vue';
   import AddBill from './AddBill.vue';
+  import Summary from './Summary.vue';
 
   const open = ref(false);
   const bills = reactive([]);
@@ -13,6 +14,7 @@
   }
 </script>
 <template>
+  <Summary :bills="bills"/>
   <Bills :bills="bills"/>
   <Blob @click="open = true"/>
   <AddBill v-model="open" @new-bill="newBill"/>
