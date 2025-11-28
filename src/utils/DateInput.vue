@@ -34,6 +34,9 @@
   }
 
   onMounted(() => {
-    input.value.valueAsDate = new Date();
+    const today = DateTime.now().toFormat('yyyy-LL-dd');
+
+    input.value.min = today;
+    input.value.value = today;
   });
 </script>
