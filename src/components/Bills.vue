@@ -8,7 +8,7 @@
         <col width="30%"/>
       </colgroup>
       <thead>
-        <tr class="text-on-secondary-low [&>th]:font-normal">
+        <tr class="text-low [&>th]:font-normal">
           <td></td>
           <th>title</th>
           <th>amount</th>
@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="bill in bills" class="text-on-secondary">
+        <tr v-for="bill in bills" class="text-high">
           <td>
             <Checkbox v-model="bill.payed"/>
           </td>
@@ -27,7 +27,7 @@
       </tbody>
     </table>
     <div v-else class="flex justify-center items-center h-24">
-      <div class="text-on-secondary-low">You have no bills to pay</div>
+      <div class="text-low">You have no bills to pay</div>
     </div>
   </div>
 </template>

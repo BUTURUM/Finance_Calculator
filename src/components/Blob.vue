@@ -1,6 +1,6 @@
 <template>
-  <button class="bg-primary rounded-3xl p-3 fixed bottom-0 right-0 mb-5 mr-5">
-    <Plus class="size-14 fill-on-primary"/>
+  <button class="primary bg-box rounded-3xl p-3 fixed bottom-0 right-0 mb-5 mr-5">
+    <Plus class="size-14 fill-high"/>
   </button>
 </template>
 <script setup>

@@ -15,8 +15,8 @@
         type="number"
       />
       <div class="flex gap-2 items-center">
-        <div class="text-on-secondary-low">to be paid by:</div>
-        <DateInput class="flex-auto" v-model="data.due"/>
+        <div class="text-low">to be paid by:</div>
+        <DateInput class="on-secondary flex-auto" v-model="data.due"/>
       </div>
       <div class="flex">
         <button @click="close" type="button" class="passive-btn flex-auto">close</button>

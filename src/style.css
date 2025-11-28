@@ -7,43 +7,55 @@
 
 @theme{
   --color-surface: #F7E9DC;
-  --color-primary: #EB765D;
-  --color-on-primary: #FFFFFF;
-  --color-on-primary-low: #FCD4CC;
-
-  --color-primary-box: #F9B6A8;
-  --color-on-primary-box: #EB765D;
-
-  --color-secondary: #FFFCF7;
-  --color-secondary-box: #E4E1DD;
-  --color-on-secondary: #382314;
-  --color-on-secondary-low: #93867B;
-
   --color-outline: #ABA299;
+
+  --color-box: #FFFCF7;
+  --color-high: #382314;
+  --color-low: #93867B;
+
+  --font-sans: DM Sans;
+}
+
+@utility primary{
+  --color-box: #EB765D;
+  --color-high: #FFFFFF;
+  --color-low: #FCD4CC;
+}
+@utility on-primary{
+  --color-box: #F9B6A8;
+  --color-high: #EB765D;
+  --color-low: var(--color-high)
+}
+@utility on-secondary{
+  --color-box: #E4E1DD;
 }
 
 @layer base{
   body{
-    @apply bg-surface font-[DM_Sans] p-3;
+    @apply bg-surface p-3;
   }
 }
 
 @layer components{
   .box{
-    @apply bg-secondary rounded-sm p-2.5
+    @apply bg-box text-high rounded-sm p-2.5
+  }
+
+  .standard-input, .passive-btn, .active-btn{
+    @apply primary
   }
 
   .standard-input{
-    @apply p-1.5 border-outline border-2 border-solid rounded-sm outline-primary
+    @apply p-1.5 border-outline border-2 border-solid rounded-sm outline-box
   }
-  
+
   .passive-btn, .active-btn{
     @apply p-1.5 rounded-sm text-center
   }
   .active-btn{
-    @apply bg-primary text-on-primary
+    @apply bg-box text-high
   }
   .passive-btn{
-    @apply text-primary
+    @apply text-box
   }
 }

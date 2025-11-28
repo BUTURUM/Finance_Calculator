@@ -1,8 +1,8 @@
 <template>
   <div
     @click="use"
-    class="rounded-sm bg-secondary-box p-1.5 inline-block"
-    :class="[date ? 'text-on-secondary' : 'text-on-secondary-low']"
+    class="rounded-sm bg-box p-1.5 inline-block"
+    :class="[date ? 'text-high' : 'text-low']"
     v-bind="$attrs"
   >
     {{ display }}
