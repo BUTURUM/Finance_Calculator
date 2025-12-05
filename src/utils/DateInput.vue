@@ -1,19 +1,17 @@
 <template>
-  <div
-    @click="use"
-    class="rounded-sm bg-box p-1.5 inline-block"
-    :class="[date ? 'text-high' : 'text-low']"
-    v-bind="$attrs"
+  <input
+    class="rounded-sm bg-box p-1.5 text-high outline-none"
+    v-model="internal"
+    type="date"
+    ref="input"
   >
-    {{ display }}
-  </div>
-  <input class="hidden" v-model="internal" @change="update" type="date" ref="input">
 </template>
+<style>
+
+</style>
 <script setup>
   import { DateTime } from 'luxon';
-  import { computed, markRaw, onMounted, useTemplateRef } from 'vue';
-
-  defineOptions({ inheritAttrs: false });
+  import { computed, markRaw, onMounted, useTemplateRef, watch } from 'vue';
 
   const input = useTemplateRef('input');
   const date = defineModel({ required: true });
@@ -22,27 +20,20 @@
     future: {
       type: Boolean, default: false
     }
-  })
+  });
 
   const internal = computed({
     get(){
-      return date.value.toISODate();
+      return date.value ? date.value.toISODate() : '';
     },
     set(value){
-      date.value = DateTime.fromISO(value);
+      date.value = value ? markRaw(DateTime.fromISO(value).startOf('day')) : null;
     }
-  })
-  const display = computed(() => date.value.toFormat('dd.LL.yyyy'));
-
-  function update(event){
-    date.value = markRaw(DateTime.fromJSDate(event.target.valueAsDate));
-  }
-
-  function use(){
-    input.value.showPicker();
-  }
+  });
 
   onMounted(() => {
-    if(future) input.value.min = DateTime.now().toISODate();
-  })
+    if(future) input.value.min = DateTime.now().startOf('day').toISODate();
+  });
+
+  watch(internal, (v) => console.log(v));
 </script>

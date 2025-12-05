@@ -15,11 +15,9 @@
   import DateInput from '../utils/DateInput.vue';
 
   const { bills } = defineProps(['bills']);
-  const period = ref(markRaw(DateTime.now()));
+  const period = ref(markRaw(DateTime.now().startOf('day')));
 
-  const amount = computed(() => {
-    return bills.reduce(
-      (total, { amount, due, payed }) => period.value >= due && !payed ? total + amount : total, 0
-    );
-  });
+  const amount = computed(() => bills.reduce((total, { amount, due, payed }) => {
+    return period.value >= due && !payed ? total + amount : total
+  }, 0));
 </script>

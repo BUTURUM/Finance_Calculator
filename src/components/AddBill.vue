@@ -36,7 +36,7 @@
   const emit = defineEmits(['new-bill']);
 
   const original = Object.freeze({
-    title: undefined, amount: undefined, due: markRaw(DateTime.now())
+    title: undefined, amount: undefined, due: markRaw(DateTime.now().startOf('day'))
   });
   const data = reactive(Object.assign({}, original));
 
